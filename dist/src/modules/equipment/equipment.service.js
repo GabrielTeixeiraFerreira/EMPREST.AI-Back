@@ -34,11 +34,10 @@ let EquipmentService = class EquipmentService {
             },
         });
         const baseUrl = process.env.SUPABASE_URL?.replace(/\/$/, '');
-        const bucket = process.env.SUPABASE_STORAGE_BUCKET;
         return equipment.map((item) => ({
             ...item,
-            imageUrl: baseUrl && bucket && item.imagePath
-                ? `${baseUrl}/storage/v1/object/public/${bucket}/${item.imagePath}`
+            imageUrl: baseUrl && item.imagePath
+                ? `${baseUrl}/storage/v1/object/public/equipamentos/images/equipamentos/${item.imagePath}`
                 : null,
         }));
     }
