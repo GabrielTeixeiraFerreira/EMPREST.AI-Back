@@ -59,6 +59,7 @@ model Equipment {
   assetTag    String            @map("asset_tag")
   status      EquipmentStatus   @default(available)
   notes       String?
+  imagePath   String?           @map("image_path")
   tenant      Tenant            @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   loans       Loan[]
   createdAt   DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)

@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import request from 'supertest';
+import request = require('supertest');
 import { AppModule } from '../src/app.module';
 
 describe('SystemController (e2e)', () => {
@@ -31,4 +31,3 @@ describe('SystemController (e2e)', () => {
     });
   });
 });
-

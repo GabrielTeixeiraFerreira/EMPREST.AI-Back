@@ -11,4 +11,3 @@ export class SystemController {
     return this.systemService.getRootMessage();
   }
 }
-
