@@ -15,12 +15,12 @@ async function bootstrap() {
             const isDevelopmentOrigin = process.env.NODE_ENV !== 'production' &&
                 (!requestOrigin ||
                     requestOrigin === 'null' ||
-                    /^https?:\/\/localhost(:\d+)?$/.test(requestOrigin));
+                    /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/.test(requestOrigin));
             if (configuredOrigins.includes(requestOrigin ?? '') || isDevelopmentOrigin) {
                 callback(null, true);
                 return;
             }
-            callback(new Error('Origin not allowed by CORS'));
+            callback(null, false);
         },
     });
     const port = process.env.PORT || 3000;
