@@ -5,6 +5,7 @@ export declare class EquipmentController {
     private readonly equipmentService;
     constructor(authService: AuthService, equipmentService: EquipmentService);
     list(authorization?: string): Promise<{
+        imageUrl: string | null;
         name: string;
         category: import(".prisma/client").$Enums.EquipmentCategory;
         assetTag: string;

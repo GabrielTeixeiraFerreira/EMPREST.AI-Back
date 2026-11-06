@@ -17,7 +17,7 @@ let EquipmentService = class EquipmentService {
         this.prisma = prisma;
     }
     async listForTenant(slug, userId) {
-        return this.prisma.equipment.findMany({
+        const equipment = await this.prisma.equipment.findMany({
             where: {
                 tenant: {
                     slug,
@@ -33,6 +33,14 @@ let EquipmentService = class EquipmentService {
                 imagePath: true,
             },
         });
+        const baseUrl = process.env.SUPABASE_URL?.replace(/\/$/, '');
+        const bucket = process.env.SUPABASE_STORAGE_BUCKET;
+        return equipment.map((item) => ({
+            ...item,
+            imageUrl: baseUrl && bucket && item.imagePath
+                ? `${baseUrl}/storage/v1/object/public/${bucket}/${item.imagePath}`
+                : null,
+        }));
     }
 };
 exports.EquipmentService = EquipmentService;

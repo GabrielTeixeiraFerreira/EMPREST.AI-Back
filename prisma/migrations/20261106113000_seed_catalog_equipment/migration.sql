@@ -1,12 +1,13 @@
-INSERT INTO "tenants" ("slug", "name")
-VALUES ('suporte_ti', 'Suporte de TI')
+INSERT INTO "tenants" ("id", "slug", "name")
+VALUES (gen_random_uuid(), 'suporte_ti', 'Suporte de TI')
 ON CONFLICT ("slug") DO UPDATE SET "name" = EXCLUDED."name";
 
 INSERT INTO "equipment"
-    ("tenant_id", "name", "category", "asset_tag", "status", "image_path")
-SELECT t."id", v."nome", v."categoria"::"EquipmentCategory",
+    ("id", "tenant_id", "name", "category", "asset_tag", "status", "image_path", "updated_at")
+SELECT gen_random_uuid(), t."id", v."nome", v."categoria"::"EquipmentCategory",
        v."patrimonio", v."situacao"::"EquipmentStatus",
-       'ti-' || lower(substring(v."patrimonio" FROM 4)) || '.jpg'
+       'ti-' || lower(substring(v."patrimonio" FROM 4)) || '.jpg',
+       CURRENT_TIMESTAMP
 FROM "tenants" AS t
 CROSS JOIN (VALUES
     ('TI-0001', 'Notebook 14 polegadas', 'notebook', 'available'),
@@ -27,4 +28,5 @@ ON CONFLICT ("tenant_id", "asset_tag") DO UPDATE SET
     "name" = EXCLUDED."name",
     "category" = EXCLUDED."category",
     "status" = EXCLUDED."status",
-    "image_path" = EXCLUDED."image_path";
+    "image_path" = EXCLUDED."image_path",
+    "updated_at" = CURRENT_TIMESTAMP;
