@@ -11,12 +11,13 @@ const common_1 = require("@nestjs/common");
 const auth_module_1 = require("./modules/auth/auth.module");
 const equipment_module_1 = require("./modules/equipment/equipment.module");
 const system_module_1 = require("./modules/system/system.module");
+const loan_module_1 = require("./modules/loan/loan.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [system_module_1.SystemModule, auth_module_1.AuthModule, equipment_module_1.EquipmentModule],
+        imports: [system_module_1.SystemModule, auth_module_1.AuthModule, equipment_module_1.EquipmentModule, loan_module_1.LoanModule],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

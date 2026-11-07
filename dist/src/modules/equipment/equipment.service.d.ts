@@ -3,11 +3,12 @@ export declare class EquipmentService {
     private readonly prisma;
     constructor(prisma: PrismaService);
     listForTenant(slug: string, userId: string): Promise<{
+        status: string;
         imageUrl: string | null;
+        id: string;
         name: string;
         category: import(".prisma/client").$Enums.EquipmentCategory;
         assetTag: string;
-        status: import(".prisma/client").$Enums.EquipmentStatus;
         imagePath: string | null;
     }[]>;
 }

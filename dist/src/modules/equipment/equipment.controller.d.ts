@@ -5,11 +5,12 @@ export declare class EquipmentController {
     private readonly equipmentService;
     constructor(authService: AuthService, equipmentService: EquipmentService);
     list(authorization?: string): Promise<{
+        status: string;
         imageUrl: string | null;
+        id: string;
         name: string;
         category: import(".prisma/client").$Enums.EquipmentCategory;
         assetTag: string;
-        status: import(".prisma/client").$Enums.EquipmentStatus;
         imagePath: string | null;
     }[]>;
 }
