@@ -11,5 +11,9 @@ levadas para o bundle do frontend.
 - `SUPABASE_URL`: projeto Supabase usado para validar o emissor dos tokens.
 - `CORS_ORIGIN`: origem do frontend permitida pela API.
 
+Para produção, configure `CORS_ORIGIN` no projeto da Vercel com
+`https://emprest-ai.vercel.app` (e não use `*`). Depois de salvar a variável,
+faça um novo deploy do backend.
+
 O frontend mantém sua própria configuração em `EMPREST.AI/.env`, limitada a
 variáveis prefixadas com `VITE_`.
