@@ -4,6 +4,7 @@ import {
   Headers,
   HttpCode,
   HttpStatus,
+  Inject,
   Post,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -16,7 +17,9 @@ interface LoginBody {
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    @Inject(AuthService) private readonly authService: AuthService,
+  ) {}
 
   @Post('login')
   @HttpCode(HttpStatus.OK)
